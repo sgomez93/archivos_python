@@ -10,12 +10,15 @@
 # Ejercicios con archivos
 
 import csv
+from optparse import AmbiguousOptionError
 
+from ejemplos_clase_1 import diccionario
 
 def ej3():
     print('Ejercicio de archivos CSV 1º')
+    #archivo = 'stock.csv'
     archivo = 'stock.csv'
-    
+
     # Realice un programa que abra el archivo 'stock.csv'
     # en modo lectura y cuente el stock total de tornillos
     # a lo largo de todo el archivo, 
@@ -27,7 +30,26 @@ def ej3():
     # para cumplir con el enunciado del ejercicio
 
     # Comenzar aquí, recuerde el identado dentro de esta funcion
-    
+    cantornillos = 0
+    csvfile = open(archivo) # Abro el archivo y no le digo que modo abrir porque por defecto es lectura
+
+    # Leo el archivo lo guardo en la variable stock como una lista de diccionarios 
+    stock = list(csv.DictReader(csvfile)) 
+
+    # Cierro el archivo porque no lo nesecito mas ya que que todo quedo guardado en la variable stock y puedo trabajar con eso solo                                    
+    csvfile.close()
+
+    #Recorro la lista de diccionarios stock, productos es el elemeto de la lista
+    # (osea para el primer caso seria el diccionario en la posicion 0, luego productos en el siguente caso seria
+    # el diccionario en la posicion 1 o fila 1). Para entender la variable productos representaria las filas que en
+    # este caso cada fila es un diccionario conformado por tornillos,tuercas, arandelas
+    # Esto no lo coloco para que los demas lo entiendan, sino para que yo lo entienda y en un futuro si me 
+    # olvido como se usaba repasar esto para recordarlo rapido.
+    for productos in stock:          
+        #coloco int porque el valor de la clave tornillos esta guardado como strig. Y yo nesecito enteros para sumar
+        cantornillos += int(productos.get('tornillos')) 
+
+    print('Cantidad de tornillos:', cantornillos)
 
 
 def ej4():
@@ -47,6 +69,29 @@ def ej4():
     # utilizando "try except", tema que se verá la clase que viene.
 
     # Comenzar aquí, recuerde el identado dentro de esta funcion
+    dep2amb = 0
+    dep3amb = 0
+    vacio = 0
+
+    with open(archivo) as csvfile:
+        propiedades = list(csv.DictReader(csvfile))
+        
+        for departamento in propiedades:
+            try:
+                if int(departamento.get('ambientes')) == 2:
+                    dep2amb += 1
+                if int(departamento.get('ambientes')) == 3:   
+                    dep3amb += 1
+            except:
+                    dep2amb += 0  # cuando no esta especificado los ambientes le sumo un cero 
+                    dep3amb += 0
+
+        print('Hay {} departamentos de 2 ambientes y {} departamentos de 3 ambientes'.format(dep2amb, dep3amb))
+
+            
+                
+
+
 
 
 if __name__ == '__main__':

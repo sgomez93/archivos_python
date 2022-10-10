@@ -55,11 +55,12 @@ def modificar_datos():
     # lista de diccionarios
     edificio = list(csv.DictReader(csvfile))
 
+    # Cerrar el archivo
+    csvfile.close()
+
     # Modificar el departamento 'b' del segundo piso:
     edificio[1]['b'] = 'Neuquen'  # 2b
 
-    # Cerrar el archivo
-    csvfile.close()
 
     # Almacenar los cambios en edificio2.csv
     # Abrir archivo para escritura

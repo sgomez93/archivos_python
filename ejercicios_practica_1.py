@@ -11,7 +11,6 @@
 
 import csv
 
-
 def ej1():
     print('Ejercicios con diccionarios 1º')
     # Crear un diccionario vacio
@@ -33,6 +32,14 @@ def ej1():
 
     # Comenzar aquí, recuerde el identado dentro de esta funcion
 
+    stock = {}
+
+    stock['tornillos'] = 100
+    stock['tuercas'] = 150
+    stock['arandelas'] = 300
+
+    print('El diccionario stock:',stock)
+
 
 def ej2():
     print('Ejercicio con diccionarios 2º')
@@ -40,7 +47,7 @@ def ej2():
     # como una base de datos. Comenzaremos con un diccionario de stock
     # de nuestros productos en cero:
     
-    strock = {'tornillos': 0, 'tuercas': 0, 'arandelas': 0}
+    stock = {'tornillos': 0, 'tuercas': 0, 'arandelas': 0}
 
     # Paso 1:
     # Crear un bucle utilizando while que se ejecute de forma infinita
@@ -66,6 +73,22 @@ def ej2():
     # imprimir en pantalla con print el diccionario con el stock final
 
     # Comenzar aquí, recuerde el identado dentro de esta funcion
+
+    while True:
+        print('¿Que producto desea ingresar?')
+        producto = str(input())
+        if producto == 'FIN':
+            break
+        elif producto not in stock:         # uso el operador de pertenecia para verificar si producto esta en diccionario stock
+            print('Error: El producto {} que desea ingresar no esta dentro del diccionario'.format(producto))
+            continue        #Para que vuelva al comienzo de la ejecucion y coloquen un poducto valido
+        
+        print('Usted ingreso el producto:', producto)
+        cantidad = int(input('Ingrese cuanto stock desea colocar al producto:\n')) 
+        stock[producto] = stock.get(producto) + cantidad   # get me devuelve el valor de la clave o key producto
+
+    print('El stock final es:', stock)
+
 
 
 if __name__ == '__main__':
