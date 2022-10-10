@@ -10,13 +10,9 @@
 # Ejercicios con archivos
 
 import csv
-from optparse import AmbiguousOptionError
-
-from ejemplos_clase_1 import diccionario
 
 def ej3():
     print('Ejercicio de archivos CSV 1º')
-    #archivo = 'stock.csv'
     archivo = 'stock.csv'
 
     # Realice un programa que abra el archivo 'stock.csv'
@@ -71,7 +67,6 @@ def ej4():
     # Comenzar aquí, recuerde el identado dentro de esta funcion
     dep2amb = 0
     dep3amb = 0
-    vacio = 0
 
     with open(archivo) as csvfile:
         propiedades = list(csv.DictReader(csvfile))
@@ -89,11 +84,6 @@ def ej4():
         print('Hay {} departamentos de 2 ambientes y {} departamentos de 3 ambientes'.format(dep2amb, dep3amb))
 
             
-                
-
-
-
-
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python")
     ej3()
